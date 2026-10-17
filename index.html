@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistema de multas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <h1>Sistema de multas</h1>
+    <p>Registre as infrações e acompanhe os pontos da carteira.</p>
+  </header>
+
+  <main class="layout">
+
+    <section class="painel" aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Registrar multa</h2>
+
+      <form id="form-multa" novalidate>
+        <div class="campo">
+          <label for="nome">Nome do motorista</label>
+          <input id="nome" type="text" autocomplete="off" placeholder="Ex.: João Silva">
+        </div>
+
+        <div class="campo">
+          <label for="placa">Placa do veículo</label>
+          <input id="placa" type="text" maxlength="8" autocomplete="off" placeholder="ABC-1234 ou ABC1D23">
+        </div>
+
+        <div class="campo">
+          <label for="infracao">Infração</label>
+          <select id="infracao"></select>
+        </div>
+
+        <div class="campo">
+          <label for="data">Data da infração</label>
+          <input id="data" type="date">
+        </div>
+
+        <p id="erro" class="erro" role="alert"></p>
+
+        <button type="submit" class="botao">Registrar multa</button>
+      </form>
+    </section>
+
+    <div class="coluna">
+
+      <section id="carteira" class="carteira" data-nivel="ok" aria-labelledby="titulo-carteira">
+        <h2 id="titulo-carteira">Pontos na carteira</h2>
+
+        <div class="pontos">
+          <strong id="pontos-total">0</strong>
+          <span>de 20 pontos</span>
+        </div>
+
+        <div class="medidor" role="progressbar" aria-label="Pontos na carteira"
+             aria-valuemin="0" aria-valuemax="20" aria-valuenow="0">
+          <div id="barra" class="medidor-barra"></div>
+        </div>
+
+        <p id="status" class="status">Nenhuma multa registrada.</p>
+
+        <div class="total">
+          <span>Valor total das multas</span>
+          <strong id="valor-total">R$ 0,00</strong>
+        </div>
+      </section>
+
+      <section class="painel" aria-labelledby="titulo-lista">
+        <div class="lista-topo">
+          <h2 id="titulo-lista">Multas registradas</h2>
+          <button type="button" id="limpar" class="remover" hidden>Limpar tudo</button>
+        </div>
+
+        <p id="vazio" class="vazio">Preencha o formulário para registrar a primeira multa.</p>
+        <ul id="lista" class="lista"></ul>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
