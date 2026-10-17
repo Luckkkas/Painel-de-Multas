@@ -35,7 +35,21 @@ const lista = document.getElementById("lista");
 const vazio = document.getElementById("vazio");
 const botaoLimpar = document.getElementById("limpar");
 
-let multas = [];
+const CHAVE = "multas-salvas";
+
+function salvarMultas() {
+  localStorage.setItem(CHAVE, JSON.stringify(multas));
+}
+
+function carregarMultas() {
+  try {
+    return JSON.parse(localStorage.getItem(CHAVE)) || [];
+  } catch {
+    return [];
+  }
+}
+
+let multas = carregarMultas();
 
 function formatarDinheiro(numero) {
   return numero.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -165,6 +179,7 @@ function limparTudo() {
 }
 
 function mostrarTela() {
+  salvarMultas();
   lista.innerHTML = "";
   multas.forEach((multa) => lista.appendChild(criarItem(multa)));
 
